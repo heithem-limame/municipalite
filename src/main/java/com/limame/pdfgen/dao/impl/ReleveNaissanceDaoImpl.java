@@ -11,10 +11,11 @@ import org.springframework.stereotype.Component;
 
 import com.limame.pdfgen.dao.ReleveNaissanceDao;
 import com.limame.pdfgen.model.ReleveNaissance;
+import com.limame.pdfgen.util.ReleveNaissanceMapper;
 
 @Component
 public class ReleveNaissanceDaoImpl implements ReleveNaissanceDao {
-	
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
@@ -39,9 +40,9 @@ public class ReleveNaissanceDaoImpl implements ReleveNaissanceDao {
 			}
 			List<Map<String, Object>> result = jdbcTemplate.queryForList(query);
 
-			for (Map<String, Object> tuple : result){
+			for (Map<String, Object> tuple : result) {
 				ReleveNaissance releve = new ReleveNaissance();
-				releve.setDateNaissace((java.sql.Date)tuple.get("date_naissace"));
+				releve.setDateNaissace((java.sql.Date) tuple.get("date_naissace"));
 				releve.setId(Long.parseLong(String.valueOf(tuple.get("id_releve"))));
 				releve.setLieuNaissance(String.valueOf("lieu_naissance"));
 				releve.setNom(String.valueOf("nom"));
@@ -50,15 +51,28 @@ public class ReleveNaissanceDaoImpl implements ReleveNaissanceDao {
 				releve.setNomPere(String.valueOf("nom_pere"));
 				releve.setSexe(String.valueOf("sexe"));
 			}
-			
-			
+
 		} catch (final Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 		return releves;
 	}
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public ReleveNaissance getReleves(Long id) {
+		try {
+			ReleveNaissance releve = jdbcTemplate.queryForObject("SELECT * FROM releve_naissance WHERE id_releve=?",
+					new ReleveNaissanceMapper(), id);
+
+			return releve;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

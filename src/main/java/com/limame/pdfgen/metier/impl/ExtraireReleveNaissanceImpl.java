@@ -33,13 +33,25 @@ public class ExtraireReleveNaissanceImpl implements ExtraireReleveNaissance {
 	}
 
 	@Override
-	public void genererDocumentExtrait(ReleveNaissance releve) {
+	public boolean genererDocumentExtrait(ReleveNaissance releve) {
+		try{
 		// generate document signature 
 		String signature = generateSignature(userSession.getLogin(), releve.getPrenom());
 		// generate PDF document 
 		
+		
+		
+		
+		
+		
+		
 		// save the currently generated document in database
 		documentExtraitDao.ajouterDocument(signature, new Timestamp(new java.util.Date().getTime()), releve.getId(), userSession.getId());
+		return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public void setUserSession(UserSession userSession) {
@@ -54,6 +66,11 @@ public class ExtraireReleveNaissanceImpl implements ExtraireReleveNaissance {
 		       .putString(relevePrenom, Charsets.UTF_8)
 		       .hash();
 		return hc.toString();
+	}
+
+	@Override
+	public ReleveNaissance chercherReleve(Long id) {
+		return releveNaissanceDao.getReleves(id);
 	}
 	
 	

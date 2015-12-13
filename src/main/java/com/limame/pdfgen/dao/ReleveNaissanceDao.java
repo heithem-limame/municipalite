@@ -9,4 +9,6 @@ public interface ReleveNaissanceDao {
 	List<ReleveNaissance> getReleves(String nom, String prenom, Date date, String lieu, String sexe, String pere,
 			String mere);
 
+	ReleveNaissance getReleves(Long id);
+
 }

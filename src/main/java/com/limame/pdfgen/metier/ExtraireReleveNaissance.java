@@ -10,5 +10,7 @@ public interface ExtraireReleveNaissance {
 	List<ReleveNaissance> chercherReleve(String nom, String prenom, Date date, String lieu, String sexe, String pere,
 			String mere);
 
-	void genererDocumentExtrait(ReleveNaissance releve);
+	ReleveNaissance chercherReleve(Long id);
+	
+	boolean genererDocumentExtrait(ReleveNaissance releve);
 }

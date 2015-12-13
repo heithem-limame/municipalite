@@ -7,8 +7,8 @@
 </head>
 
 <body ng-controller="loginController">
-     <span href="#" class="button" id="toggle-login">Se Connecter</span>
-     <div id="login">
+     <span href="#" class="button" id="toggle-login">{{connectionStatus}}</span>
+     <div id="login" ng-hide="connexionValide">
           <div id="triangle"></div>
           <h1>
                Se connecter
@@ -16,10 +16,26 @@
                     <span id="message" ng-model="message">{{message}}</span>
                </div>
           </h1>
-          <form method="post" action="auth" novalidate>
+          <form method="post" novalidate>
                <input type="text" placeholder="Pseudo" name="login" ng-model="login" /> <input type="password"
                     placeholder="Password" name="pass" ng-model="pass"
                /> <input type="button" value="Se Connecter" ng-click="connect()" />
+          </form>
+     </div>
+     <div id="search" ng-show="connexionValide">
+          <div id="triangle"></div>
+          <h1>
+               Recherche
+               <div id="popupLogin" ng-show="error">
+                    <span id="message" ng-model="message">{{message}}</span>
+               </div>
+          </h1>
+          <form method="post" novalidate>
+               <input type="text" placeholder="Nom" name="nom" ng-model="nom" /> <input type="text" placeholder="Prénom"
+                    name="prenom" ng-model="prenom"
+               /> <input type="date" name="date" ng-model="date" /> <input type="button" value="Recherche"
+                    ng-click="recherche()"
+               /> <input type="button" value="Imprimer Relevé" ng-click="imprimer()" ng-show="releveTrouve" />
           </form>
      </div>
 

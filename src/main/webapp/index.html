@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Authentification</title>
+<link rel="stylesheet" href="resources/css/style.css" />
+</head>
+
+<body ng-app="pdfGenApp">
+     <span href="#" class="button" id="toggle-login">Se Connecter</span>
+     <div id="login">
+          <div id="triangle"></div>
+          <h1>Se connecter</h1>
+          <form method="post" action="auth" novalidate ng-controller="loginController">
+               <input type="text" placeholder="Pseudo" name="login" ng-model="login" /> 
+               <input type="password" placeholder="Password" name="pass" ng-model="pass"
+               /> <input type="button" value="Se Connecter" ng-click="connect()" />
+          </form>
+     </div>
+     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+     <script src="resources/js/application.js"></script>
+     <script src="resources/js/index.js"></script>
+
+</body>
+</html>

@@ -13,11 +13,14 @@ public class AuthentificationImpl implements Authentification {
 
 	@Autowired
 	private UsersDao usersDao;
+	@Autowired
 	private UserSession userSession;
 
 	@Override
 	public boolean seConnecter(String login, String pass) {
 		Users user = usersDao.getUser(login, pass);
+		if (user == null)
+			return false;
 		userSession.setId(user.getId());
 		userSession.setLogin(user.getLogin());
 		return true;

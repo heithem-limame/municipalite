@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Users implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 	Long id;
 	String login, pass;
 
@@ -34,6 +33,11 @@ public class Users implements Serializable {
 
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", login=" + login + ", pass=" + pass + "]";
 	}
 
 }

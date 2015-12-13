@@ -85,3 +85,13 @@ input[type="button"]{
 input[type="button"]:hover{
   background:#2288bb;
 }
+
+#popupLogin{
+  margin:0 auto;
+  margin-top:8px;
+  margin-bottom:2%;
+  color: red;
+  font-weight: bold;
+  transition:opacity 1s;
+  -webkit-transition:opacity 1s;
+}
